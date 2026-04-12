@@ -1,6 +1,6 @@
 ## Hi there 👋
 
-**Hi, there. I am Yukun Zhou, a CS senior at Xidian University and currently an Algorithm Researcher at starup, a AI Developer with 5+ years of experience in developing enterprise applications and open-source software.**
+ I am Yukun Zhou, a CS senior at Xidian University and currently an Algorithm Researcher at starup, a AI Developer with 5+ years of experience in developing enterprise applications and open-source software.
 
 ## 🔗 Links
 
