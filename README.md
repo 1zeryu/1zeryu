@@ -14,3 +14,6 @@
 - *2024.07*: &nbsp; One paper accepted to ECCV 2024 (InfoGrowth)
 - *2024.05*: &nbsp; Open-Sora has been released. Congratulations! 
 
+## 📖 Educations
+
+- *2021.09 - 2025.06*, School of Computer Science and Technology, Xidian University.
