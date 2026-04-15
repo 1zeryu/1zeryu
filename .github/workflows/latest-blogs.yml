@@ -1,0 +1,19 @@
+name: Latest blog posts
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update-readme-with-blog:
+    name: Update README
+    runs-on: ubuntu-latest
+    steps:
+      - uses: gautamkrishnar/blog-post-workflow@v1
+        with:
+          feed_list: "https://1zeryu.github.io/blogs/index.xml"
+          max_post_count: 5

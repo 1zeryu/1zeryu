@@ -8,6 +8,13 @@
 - Personal Pages: 🌱 [Personal Pages](https://1zeryu.github.io/)
 - Google Email：📫 ykzhou8981389@gmail.com
 
+## 📝 Latest Blogs
+
+- More: https://1zeryu.github.io/blogs/
+
+<!-- BLOG-POST-LIST:START -->
+<!-- BLOG-POST-LIST:END --> 
+
 ## 🔥 News
 
 - *2025.07*: &nbsp; Two papers accepted to CVPR 2025 (HumanDreamer, SpeeD)
