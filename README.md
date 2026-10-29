@@ -7,7 +7,7 @@
 - Google Scholar: 🔭 [Google Scholar](https://scholar.google.com/citations?hl=en&user=c0WCD74AAAAJ) (full public papers).
 - Personal Pages: 🌱 [Personal Pages](https://1zeryu.github.io/)
 - Google Email：📫 ykzhou8981389@gmail.com
-- Blog: 📝 [Blog](https://1zeryu.github.io/blogs/)
+- Blog: 📝 [Blog](https://1zeryu.github.io/writing/)
 - Zhihu: 📝 [Zhihu](https://www.zhihu.com/people/zhou-shi-yi-57)
 
 ## 🔥 News
