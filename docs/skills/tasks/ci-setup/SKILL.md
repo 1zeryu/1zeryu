@@ -55,6 +55,28 @@ jobs:
 - **安全**：自托管 runner 必须校验 PR 来源（`head.repo.full_name == github.repository`），防 fork 恶意代码跑在你机器上；配 `timeout-minutes` 防占死。
 - **报告**：`actions/upload-artifact` 用 `if: always()`，失败也上传 junit/coverage 产物便于定位。
 
+## 如何通过 CI（PR 门禁）
+
+PR 必须通过 CI 才能合并时，开发者的正确姿势是**本地先复现 CI**，而不是把 GitHub 当调试台一次次提交重跑。
+
+1. **本地跑同一套命令**：CI 的每个 job 都有对应的本地命令。以 Uranus 为例，CI 跑的是 `tests/run_tests.sh fast` / `dist` / `gpu`，本地用 `tests/run_tests.sh ci`（= lint + fast + dist）即可一次复现除 GPU 外的全部门禁。有 GPU 的机器再加 `gpu`。
+2. **先过 lint 再跑测试**：lint 最快且失败最常见（格式、未用 import）。先 `ruff format --check .` / `ruff check .`，多数问题 `ruff check --fix` 或 `ruff format` 能自动修。
+3. **对齐环境**：CI 用锁文件精确还原依赖（`uv sync --frozen`）。本地 `uv.lock` 变了要一起提交，否则 CI 的「同步依赖」步骤会失败。
+4. **看失败产物，别只看红叉**：CI 会上传 junit/coverage 产物（`if: always()`），从 `junit-*.xml` 或 `htmlcov/` 定位具体挂在哪条用例、哪行。
+5. **常见失败对照**：
+   - lint 红 → 本地 `ruff check .` + `ruff format .`
+   - 依赖同步失败 → 检查 `uv.lock` / `pyproject.toml` 是否同步提交
+   - 单测挂 → 用 junit 报告定位用例，本地 `pytest -k <用例名>` 复现
+   - 覆盖率下降 → 看 `coverage.json` / `htmlcov`，补测试或确认阈值
+   - GPU job 条件不满足不跑是正常的（路径过滤 / fork 校验），不是失败
+
+### 让 PR「必须」过 CI（Branch protection）
+
+CI 只是自动跑，要不要强制拦住合并是另一层配置：
+
+- GitHub：仓库 `Settings → Branches → Add rule`，目标分支填 `main`，勾选 **Require status checks to pass before merging**，选中要强制的 job（如 `fast`、`lint`）。
+- 这样 PR 里 CI 不绿就点不了 Merge；管理员可 override。
+
 ## 参考
 
 完整案例（分层 + GPU 自托管 + 镜像回退 + 覆盖率门禁的真实 CI）：见 `references/uranus-ci.md`。
